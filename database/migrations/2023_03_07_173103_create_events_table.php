@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('information');
-            $table->integer('max-people');
-            $table->datetime('start-date');
-            $table->datetime('end-date');
-            $table->boolean('is-visible');
+            $table->integer('max_people');
+            $table->datetime('start_date');
+            $table->datetime('end_date');
+            $table->boolean('is_visible');
             $table->timestamps();
             
 

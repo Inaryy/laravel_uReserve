@@ -20,10 +20,10 @@ class EventFactory extends Factory
         return [
             'name' => $this->faker->name,
             'information' => $this->faker->realText,
-            'max-people' => $this->faker->numberBetween(1, 20),
-            'start-date' => $dummyDate->format('Y-m-d H:i:s'),
-            'end-date' => $dummyDate->modify('+1hour')->format('Y-m-d H:i:s'),
-            'is-visible' => $this->faker->boolean
+            'max_people' => $this->faker->numberBetween(1, 20),
+            'start_date' => $dummyDate->format('Y-m-d H:i:s'),
+            'end_date' => $dummyDate->modify('+1hour')->format('Y-m-d H:i:s'),
+            'is_visible' => $this->faker->boolean
         ];
     }
 }
