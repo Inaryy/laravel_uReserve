@@ -6,6 +6,8 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Services\EventService;
 
 class EventController extends Controller
 {
@@ -41,7 +43,32 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        dd($request);
+        // dd($request);
+
+        $check = EventService::checkEventDupulication(
+            $request['event_date'], $request['start_time'], $request['end_time']);
+        
+        if($check){
+            session()->flash('status', 'この時間帯は既に他のイベントが登録されています');
+            return view('manager.events.create');
+        }
+
+        $startDate = EventService::jointDateAndTime($request['event_date'], $request['start_time']);
+
+        $endDate = EventService::jointDateAndTime($request['event_date'], $request['end_time']);
+
+        Event::create([
+            'name' => $request['event_name'],
+            'information' => $request['information'],
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+            'max_people' => $request['max_people'],
+            'is_visible' => $request['is_visible']
+        ]);
+
+        session()->flash('status', '登録OKです');
+
+        return to_route('events.index');
     }
 
     /**

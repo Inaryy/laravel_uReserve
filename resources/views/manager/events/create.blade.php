@@ -25,11 +25,9 @@
                         <x-input id="event_name" class="block mt-1 w-full" type="text" name="event_name" :value="old('event_name')" required autofocus autocomplete="username" />
                     </div>
                     <div class="mt-4">
-                        <x-label for="infomation" value="イベント詳細" />
-                        <x-textarea row="3" id="information" class="block mt-1 w-full" >{{ old('event_name' )}}</x-textarea>
+                        <x-label for="information" value="イベント詳細" />
+                        <x-textarea row="3" id="information" class="block mt-1 w-full" name="information">{{ old('information' )}}</x-textarea>
                     </div>
-
-
                     <div class="md:flex justify-between">
                         <div class="mt-4">
                             <x-label for="event_date" value="イベント日付" />
